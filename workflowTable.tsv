@@ -1,9 +1,15 @@
-name	language	scale	k8	cloud	ML-compatible	wf-complexity	data-amount	containers
-Hamilton	Python	micro	no	no	yes	low_and_high	high	no
-AirFlow	Python	macro	yes	yes	yes	high	low_and_high	no
-Nextflow	Language-agnostic	macro	yes	yes	yes	high	low_and_high	yes
-Prefect	Python	macro	yes-paid	yes-paid	yes	low	low	no
-Dagster	Python	macro	yes-paid	yes-paid	yes	low_and_high	low_and_high	yes
-Digdag	Language-agnostic	macro	yes-dev	yes	yes	high	low_and_high	yes
-DVC	Language-agnostic	macro	no	yes	yes	low	low_and_high	no
-Kedro	Python	micro	no	no	yes	low_and_high	low_and_high	no
+name	language	k8	ML-compatible	containers	format	goal	combo
+AirFlow	Language-agnostic	no	yes	yes	Python	auto	yes
+Argo	Language-agnostic	yes	yes	yes	YAML	auto	yes
+DVC	Python	no	yes	no	YAML	auto	no
+Dagster	Python	yes-but	yes	yes	Python	auto	no
+Digdag	Language-agnostic	yes	yes-but	yes	YAML	auto	no
+Hamilton	Python	no	yes	no	Python	pipeline	yes
+Kedro	Python	yes	yes-but	yes	Python	pipeline	yes
+Luigi	Python	yes	yes-but	yes	Python	pipeline	yes
+Metaflow	Python	yes-but	yes	yes	Python	pipeline	yes
+Nextflow	Language-agnostic	yes-but	yes	yes	Groovy	pipeline	yes
+Pachyderm	Python	yes	yes	no	YAML	auto	no
+Prefect	Python	yes-but	no	no	Python	auto	no
+Snakemake 	Language-agnostic	yes-but	yes	yes	Python	pipeline	yes
+Targets 	R	no	no	no	R	pipeline	yes
