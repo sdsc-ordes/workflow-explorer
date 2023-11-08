@@ -14,10 +14,10 @@ ui <- fluidPage(
       helpText("Select different constraints to find a workflow manager for you"),
       
       selectInput("lang", "Is your workflow using only Python as language?",
-                 choices = c("Not relevant",
-                             "yes", 
-                             "no")
-                 ),
+                  choices = c("Not relevant",
+                              "yes", 
+                              "no")
+      ),
       
       selectInput("k8", "Are you working or planning to work with Kubernetes?",
                   choices = c("Not relevant",
@@ -36,13 +36,13 @@ ui <- fluidPage(
                               "yes", 
                               "no")
       ),
-
+      
       checkboxGroupInput("format", "Which format and/or language are you comfortable with?",
-                  choices = c("Python",
-                              "YAML", 
-                              "JSON",
-                              "R",
-                              "Groovy")
+                         choices = c("Python",
+                                     "YAML", 
+                                     "JSON",
+                                     "R",
+                                     "Groovy")
       ),
       
       selectInput("goal", "Is your end goal full automation (reproducibility+scheduling) or reproducibility only?",
@@ -56,7 +56,7 @@ ui <- fluidPage(
                               "yes", 
                               "no")
       )
-
+      
     ),
     mainPanel(
       tableOutput("filtered_workflow_list")
@@ -87,8 +87,8 @@ server <- function(input, output) {
           workflowTable <- workflowTable %>%
             filter(k8 == input$k8 | k8 == "yes-but")
         } else {
-        workflowTable <- workflowTable %>%
-          filter(k8 == input$k8)
+          workflowTable <- workflowTable %>%
+            filter(k8 == input$k8)
         }
       }
       
