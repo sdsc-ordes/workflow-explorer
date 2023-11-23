@@ -1,9 +1,0 @@
-name	language	scale	k8	cloud	ML-compatible	wf-complexity	data-amount	containers
-Hamilton	Python	micro	no	no	yes	low_and_high	high	no
-AirFlow	Python	macro	yes	yes	yes	high	low_and_high	no
-Nextflow	Language-agnostic	macro	yes	yes	yes	high	low_and_high	yes
-Prefect	Python	macro	yes-paid	yes-paid	yes	low	low	no
-Dagster	Python	macro	yes-paid	yes-paid	yes	low_and_high	low_and_high	yes
-Digdag	Language-agnostic	macro	yes-dev	yes	yes	high	low_and_high	yes
-DVC	Language-agnostic	macro	no	yes	yes	low	low_and_high	no
-Kedro	Python	micro	no	no	yes	low_and_high	low_and_high	no

@@ -9,7 +9,7 @@ Requirements:
 -   R version 4.2.2+
 -   R libraries: `here` and `tidyverse`
 
-After cloning the repository, run the following command with the path to the repo:
+After cloning the repository, run the following command with the path to the `workflowExplorer` folder inside the repo:
 
 ```         
 R -e "shiny::runApp('~/path_to/workflowExplorer')"
