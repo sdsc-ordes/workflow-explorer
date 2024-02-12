@@ -1,5 +1,5 @@
 name	language	k8	ML-compatible	containers	format	goal	combo
-AirFlow	Language-agnostic	no	yes	yes	Python	auto	yes
+AirFlow	Language-agnostic	yes	yes	yes	Python	auto	yes
 Argo	Language-agnostic	yes	yes	yes	YAML	auto	yes
 DVC	Python	no	yes	no	YAML	auto	no
 Dagster	Python	yes-but	yes	yes	Python	auto	no
