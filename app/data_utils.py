@@ -7,6 +7,7 @@ from input_data import questions
 
 # Input functions
 
+
 def input_question(id: str, label: str, choices: List[str], type: str):
     if type == "select":
         return ui.input_select(id, label, choices)
@@ -18,13 +19,16 @@ def input_question(id: str, label: str, choices: List[str], type: str):
 
 # Filter functions
 
-def filter_replies(q_name:str, answer: Optional[Union[str,Iterable]], workflows: pd.DataFrame) -> pd.DataFrame:
+
+def filter_replies(
+    q_name: str, answer: Optional[Union[str, Iterable]], workflows: pd.DataFrame
+) -> pd.DataFrame:
     match q_name:
         case "lang":
             return filter_lang(answer, workflows)
         case "k8" | "containers" | "combo":
             return filter_CEQ(q_name, answer, workflows)
-        # TODO: Maybe worth changing the name in workflowTable.tsv 
+        # TODO: Maybe worth changing the name in workflowTable.tsv
         case "ml":
             return filter_CEQ("ML-compatible", answer, workflows)
         case "format":
@@ -32,7 +36,7 @@ def filter_replies(q_name:str, answer: Optional[Union[str,Iterable]], workflows:
         case "goal":
             return filter_goal(answer, workflows)
         case _:
-            Warning(f'No filter for {q_name} defined.')
+            Warning(f"No filter for {q_name} defined.")
             return workflows
 
 
