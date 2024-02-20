@@ -44,6 +44,7 @@ app_ui = ui.page_fluid(
 
 def server(input, output, session):
     wf_tab = pd.read_csv("app/workflowTable.tsv", sep="\t")
+
     @reactive.Effect
     @reactive.event(input.reset)
     def _():
