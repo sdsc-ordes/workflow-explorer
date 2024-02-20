@@ -2,12 +2,15 @@ from shiny import App, ui, render, reactive
 from faicons import icon_svg
 import pandas as pd
 import data_utils as du
+import shinyswatch
 from pathlib import Path
 from input_data import default_checkbox, default_select, questions
 
 ### ----- Front end: User interface ----- ###
 
 app_ui = ui.page_fluid(
+    # TODO: select theme? shinyswatch.theme.sketchy(),
+    shinyswatch.theme_picker_ui(),
     ui.panel_title("Workflow Explorer"),
     ui.layout_sidebar(
         ui.panel_sidebar(
@@ -44,6 +47,9 @@ app_ui = ui.page_fluid(
 
 def server(input, output, session):
     wf_tab = pd.read_csv("app/workflowTable.tsv", sep="\t")
+
+    # TODO: remove to use a fixed theme
+    shinyswatch.theme_picker_server()
 
     @reactive.Effect
     @reactive.event(input.reset)
