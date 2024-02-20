@@ -22,7 +22,7 @@ If you have [conda](https://docs.conda.io/projects/conda/en/latest/index.html) i
 ```         
 conda create -n workflow-explorer python=3.10
 conda activate workflow-explorer
-pip install shiny faicons pandas
+pip install shiny faicons pandas shinyswatch
 ```
 
 To run the app activate the environment:
