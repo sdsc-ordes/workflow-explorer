@@ -6,13 +6,13 @@ This repository includes a simple demo for an app to recommend workflow managers
 
 Requirements:
 
--   R version 4.2.2+
--   R libraries: `here` and `tidyverse`
+-   Python 3.10+
+-   Python packages: `shiny`, `faicons` and `pandas`
 
-After cloning the repository, run the following command with the path to the `workflowExplorer` folder inside the repo:
+After cloning the repository, run the following command with the path to the `workflow-explorer` folder inside the repo:
 
 ```         
-R -e "shiny::runApp('~/path_to/workflowExplorer')"
+shiny run --reload app/app.py
 ```
 
 ## Install dependencies via conda
@@ -20,11 +20,14 @@ R -e "shiny::runApp('~/path_to/workflowExplorer')"
 If you have [conda](https://docs.conda.io/projects/conda/en/latest/index.html) installed:
 
 ```         
-conda create -n workflowApp -c conda-forge r-base r-shiny r-tidyverse r-here
+conda create -n workflow-explorer python=3.10
+conda activate workflow-explorer
+pip install shiny faicons pandas shinyswatch
 ```
 
-To run the app, activate the environment as follows:
+To run the app activate the environment:
 
 ```         
-conda activate workflowApp
+conda activate workflow-explorer
+shiny run --reload app/app.py
 ```
