@@ -9,6 +9,7 @@ from input_data import questions
 
 
 def input_question(id: str, label: str, choices: List[str], type: str):
+    """Select ui group based on the question type"""
     if type == "select":
         return ui.input_select(id, label, choices)
     elif type == "checkbox":
@@ -23,6 +24,7 @@ def input_question(id: str, label: str, choices: List[str], type: str):
 def filter_replies(
     q_name: str, answer: Optional[Union[str, Iterable]], workflows: pd.DataFrame
 ) -> pd.DataFrame:
+    """Apply specific filter functions for each question"""
     match q_name:
         case "lang":
             return filter_lang(answer, workflows)
@@ -41,6 +43,7 @@ def filter_replies(
 
 
 def filter_CEQ(q_name: str, answer: str, workflows: pd.DataFrame) -> pd.DataFrame:
+    """Workflow filter for closed-ended questions with only yes(yes-but) and no as possible answers"""
     if answer == "Not relevant":
         return workflows
     elif answer == "yes":
@@ -52,6 +55,7 @@ def filter_CEQ(q_name: str, answer: str, workflows: pd.DataFrame) -> pd.DataFram
 
 
 def filter_lang(answer: str, workflows: pd.DataFrame) -> pd.DataFrame:
+    """Workflow filter for language question"""
     if answer == "Not relevant":
         return workflows
     elif answer == "yes":
@@ -64,6 +68,7 @@ def filter_lang(answer: str, workflows: pd.DataFrame) -> pd.DataFrame:
 
 
 def filter_format(answer: Optional[Iterable], workflows: pd.DataFrame) -> pd.DataFrame:
+    """Workflow filter based on selected formats"""
     if not answer:
         return workflows
     else:
@@ -72,6 +77,7 @@ def filter_format(answer: Optional[Iterable], workflows: pd.DataFrame) -> pd.Dat
 
 
 def filter_goal(answer: str, workflows: pd.DataFrame) -> pd.DataFrame:
+    """Workflow filter based on teh overall goal"""
     if answer == "Not relevant":
         return workflows
     elif answer == "full automation":
