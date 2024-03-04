@@ -13,6 +13,7 @@ app_ui = ui.page_fluid(
     shinyswatch.theme_picker_ui(),
     ui.panel_title("Workflow Explorer"),
     ui.layout_sidebar(
+        # Question panel
         ui.panel_sidebar(
             [
                 du.input_question(id, q.get("label"), q.get("choices"), q.get("type"))
@@ -24,8 +25,10 @@ app_ui = ui.page_fluid(
                 width="30%",
             ),
         ),
+        # Answer table
         ui.panel_main(ui.dataframe.output_data_frame("filter")),
     ),
+    # Styling
     ui.include_css(Path(__file__).parent / "static/styles/main.css"),
     ui.panel_absolute(
         ui.div(
@@ -51,6 +54,7 @@ def server(input, output, session):
     # TODO: remove to use a fixed theme
     shinyswatch.theme_picker_server()
 
+    # Reset event
     @reactive.Effect
     @reactive.event(input.reset)
     def _():
@@ -59,6 +63,7 @@ def server(input, output, session):
         for id, value in default_checkbox.items():
             ui.update_checkbox_group(id, selected=value)
 
+    # Workflow filter
     @output
     @render.data_frame
     def filter():
@@ -67,5 +72,7 @@ def server(input, output, session):
             filtered_wf = du.filter_replies(q_name, input[q_name](), filtered_wf)
         return render.DataTable(filtered_wf)
 
+
+### ---------------------------- ###
 
 app = App(app_ui, server)

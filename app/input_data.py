@@ -45,7 +45,9 @@ questions = {
     },
 }
 
-# Defaults select
+# Defaults
+
+## Defaults select
 default_select = {
     "lang": "Not relevant",
     "k8": "Not relevant",
@@ -55,5 +57,5 @@ default_select = {
     "combo": "Not relevant",
 }
 
-# Defaults checkbox
+## Defaults checkbox
 default_checkbox = {"format": []}
