@@ -1,8 +1,8 @@
-import shinyswatch
 from shiny import App, ui, render, reactive
 from faicons import icon_svg
 import pandas as pd
 import data_utils as du
+import shinyswatch
 from pathlib import Path
 from input_data import default_checkbox, default_select, questions
 
@@ -34,7 +34,7 @@ app_ui = ui.page_fluid(
         ui.div(
             ui.tags.a(
                 icon_svg("github", width="45px", height="48px"),
-                href="https://github.com/SDSC-ORD/workflow-explorer",
+                href="https://github.com/sdsc-ordes/workflow-explorer",
                 target="_blank",
             ),
         ),
@@ -49,7 +49,7 @@ app_ui = ui.page_fluid(
 
 
 def server(input, output, session):
-    wf_tab = pd.read_csv(Path(__file__).parent / "workflowTable.tsv", sep="\t")
+    wf_tab = pd.read_csv("app/workflowTable.tsv", sep="\t")
 
     # TODO: remove to use a fixed theme
     shinyswatch.theme_picker_server()
@@ -64,13 +64,40 @@ def server(input, output, session):
             ui.update_checkbox_group(id, selected=value)
 
     # Workflow filter
-    @output
-    @render.data_frame
     def filter():
         filtered_wf = wf_tab.copy()
         for q_name in questions:
             filtered_wf = du.filter_replies(q_name, input[q_name](), filtered_wf)
-        return render.DataTable(filtered_wf)
+        return filtered_wf
+    
+    # Workflow cards generation
+
+    def generate_cards(filtered_wf):
+        cards = []
+        for i, row in filtered_wf.iterrows():
+            card = ui.card(
+                ui.card_header(
+                    ui.tags.h5(row["Name"]),
+                    ui.tags.h6(row["Type"]),
+                ),
+                ui.card_body(
+                    ui.tags.p(row["Description"]),
+                    ui.tags.p(f"Author: {row['Author']}"),
+                    ui.tags.p(f"Date: {row['Date']}"),
+                    ui.tags.p(f"Tags: {row['Tags']}"),
+                    ui.tags.p(f"Link: {row['Link']}"),
+                ),
+            )
+            cards.append(card)
+        return cards
+    
+    @output
+    @render.ui
+    def workflow_cards():
+        filtered_wf = filter()
+        wf_cards = generate_cards(filtered_wf)
+        return ui.layout_cards(wf_cards)
+
 
 
 ### ---------------------------- ###
