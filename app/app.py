@@ -51,7 +51,7 @@ app_ui = ui.page_fluid(
 
 
 def server(input, output, session):
-    wf_tab = pd.read_csv("app/workflowTable.tsv", sep="\t")
+    wf_tab = pd.read_csv(Path(__file__).parent / "workflowTable.tsv", sep="\t")
 
     # TODO: remove to use a fixed theme
     shinyswatch.theme_picker_server()
