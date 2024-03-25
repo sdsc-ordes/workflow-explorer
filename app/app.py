@@ -1,8 +1,8 @@
-import shinyswatch
 from shiny import App, ui, render, reactive
 from faicons import icon_svg
 import pandas as pd
 import data_utils as du
+import shinyswatch
 from pathlib import Path
 from input_data import default_checkbox, default_select, questions
 
@@ -26,7 +26,9 @@ app_ui = ui.page_fluid(
             ),
         ),
         # Answer table
-        ui.panel_main(ui.dataframe.output_data_frame("filter")),
+        ui.panel_main(
+            ui.output_ui("workflow_cards")
+            ),
     ),
     # Styling
     ui.include_css(Path(__file__).parent / "static/styles/main.css"),
@@ -34,11 +36,11 @@ app_ui = ui.page_fluid(
         ui.div(
             ui.tags.a(
                 icon_svg("github", width="45px", height="48px"),
-                href="https://github.com/SDSC-ORD/workflow-explorer",
+                href="https://github.com/sdsc-ordes/workflow-explorer",
                 target="_blank",
             ),
         ),
-        bottom="0%",
+        top="1%",
         right="1%",
     ),
 )
@@ -64,14 +66,19 @@ def server(input, output, session):
             ui.update_checkbox_group(id, selected=value)
 
     # Workflow filter
-    @output
-    @render.data_frame
     def filter():
         filtered_wf = wf_tab.copy()
         for q_name in questions:
             filtered_wf = du.filter_replies(q_name, input[q_name](), filtered_wf)
-        return render.DataTable(filtered_wf)
-
+        return filtered_wf
+    
+    # Render workflow cards
+    @output
+    @render.ui
+    def workflow_cards():
+        filtered_wf = filter()
+        cards = du.generate_cards(filtered_wf)
+        return ui.layout_column_wrap(*cards, width=1 / 3)
 
 ### ---------------------------- ###
 

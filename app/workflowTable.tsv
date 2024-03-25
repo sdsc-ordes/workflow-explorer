@@ -1,15 +1,15 @@
-name	language	k8	ML-compatible	containers	format	goal	combo
-AirFlow	Language-agnostic	yes	yes	yes	Python	auto	yes
-Argo	Language-agnostic	yes	yes	yes	YAML	auto	yes
-DVC	Python	no	yes	no	YAML	auto	no
-Dagster	Python	yes-but	yes	yes	Python	auto	no
-Digdag	Language-agnostic	yes	yes-but	yes	YAML	auto	no
-Hamilton	Python	no	yes	no	Python	pipeline	yes
-Kedro	Python	yes	yes-but	yes	Python	pipeline	yes
-Luigi	Python	yes	yes-but	yes	Python	pipeline	yes
-Metaflow	Python	yes-but	yes	yes	Python	pipeline	yes
-Nextflow	Language-agnostic	yes-but	yes	yes	Groovy	pipeline	yes
-Pachyderm	Python	yes	yes	no	YAML	auto	no
-Prefect	Python	yes-but	no	no	Python	auto	no
-Snakemake 	Language-agnostic	yes-but	yes	yes	Python	pipeline	yes
-Targets 	R	no	no	no	R	pipeline	yes
+name	language	k8	ML-compatible	containers	format	goal	combo	icon
+AirFlow	Language-agnostic	yes	yes	yes	Python	auto	yes	https://raw.githubusercontent.com/apache/airflow/b402f8a35633beb4a41e09365a57008c67d377e8/docs/apache-airflow/img/logos/github_repository_social_image.png
+Argo	Language-agnostic	yes	yes	yes	YAML	auto	yes	https://raw.githubusercontent.com/argoproj/argo-workflows/main/docs/assets/argo.png
+DVC	Python	no	yes	no	YAML	auto	no	https://raw.githubusercontent.com/iterative/dvc.org/2ccb7e976f5f5b0696d49a7a85c32fffe6d76ebc/static/img/logos/dvc.svg
+Dagster	Python	yes-but	yes	yes	Python	auto	no	https://raw.githubusercontent.com/dagster-io/dagster/de7fc9b07557b0dfcd94a5fd0ff5aba3837003d1/docs/next/public/assets/logos/dagster-logo.svg
+Digdag	Language-agnostic	yes	yes-but	yes	YAML	auto	no	https://raw.githubusercontent.com/treasure-data/digdag/master/digdag-docs/src/_static/logo/logo-digdag-rec-wt.png
+Hamilton	Python	no	yes	no	Python	pipeline	yes	https://www.tryhamilton.dev/img/hamilton_logo_transparent_bkgrd.ico
+Kedro	Python	yes	yes-but	yes	Python	pipeline	yes	https://raw.githubusercontent.com/kedro-org/kedro-brand-identity/main/horizontal/color/kedro-horizontal-color-on-light.svg
+Luigi	Python	yes	yes-but	yes	Python	pipeline	yes	https://raw.githubusercontent.com/spotify/luigi/master/doc/luigi.png
+Metaflow	Python	yes-but	yes	yes	Python	pipeline	yes	https://raw.githubusercontent.com/Netflix/metaflow/7e0564cbeb480299d7ae4c382aa094ee7207f202/docs/metaflow.svg
+Nextflow	Language-agnostic	yes-but	yes	yes	Groovy	pipeline	yes	https://raw.githubusercontent.com/nextflow-io/trademark/26e6fbc0830b0ff2b1af9df279cd22a48f37e14d/nextflow-logo-bg-light.svg
+Pachyderm	Python	yes	yes	no	YAML	auto	no	https://www.pachyderm.com/wp-content/uploads/2021/12/PachydermFeatured.jpg
+Prefect	Python	yes-but	no	no	Python	auto	no	https://raw.githubusercontent.com/PrefectHQ/prefect/4bf831bf2e7f97f9fcf0f13d9ab9d3e15c804aca/ui/src/assets/logos/prefect-logo-gradient-navy.svg
+Snakemake 	Language-agnostic	yes-but	yes	yes	Python	pipeline	yes	https://raw.githubusercontent.com/snakemake/snakemake/d99b3a0ec43f29da0f2545d9664da4233eeb5e48/docs/_static/logo-snake.svg
+Targets 	R	no	no	no	R	pipeline	yes	https://raw.githubusercontent.com/ropensci/targets/d71b987df49a63402cf416c2403ece306b5f71c1/man/figures/logo.svg

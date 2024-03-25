@@ -16,3 +16,16 @@ a:hover {
 a:active {
     color: black;
 }
+/* center images */
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 120px;
+    height: 60px;
+}
+/* text format */
+.text {
+    font: normal normal 13px/1.2 "arial";
+    letter-spacing: 0px;
+}
