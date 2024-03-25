@@ -26,7 +26,9 @@ app_ui = ui.page_fluid(
             ),
         ),
         # Answer table
-        ui.panel_main(ui.dataframe.output_data_frame("filter")),
+        ui.panel_main(
+            ui.output_ui("workflow_cards")
+            ),
     ),
     # Styling
     ui.include_css(Path(__file__).parent / "static/styles/main.css"),
@@ -38,7 +40,7 @@ app_ui = ui.page_fluid(
                 target="_blank",
             ),
         ),
-        bottom="0%",
+        top="1%",
         right="1%",
     ),
 )
@@ -70,35 +72,13 @@ def server(input, output, session):
             filtered_wf = du.filter_replies(q_name, input[q_name](), filtered_wf)
         return filtered_wf
     
-    # Workflow cards generation
-
-    def generate_cards(filtered_wf):
-        cards = []
-        for i, row in filtered_wf.iterrows():
-            card = ui.card(
-                ui.card_header(
-                    ui.tags.h5(row["Name"]),
-                    ui.tags.h6(row["Type"]),
-                ),
-                ui.card_body(
-                    ui.tags.p(row["Description"]),
-                    ui.tags.p(f"Author: {row['Author']}"),
-                    ui.tags.p(f"Date: {row['Date']}"),
-                    ui.tags.p(f"Tags: {row['Tags']}"),
-                    ui.tags.p(f"Link: {row['Link']}"),
-                ),
-            )
-            cards.append(card)
-        return cards
-    
+    # Render workflow cards
     @output
     @render.ui
     def workflow_cards():
         filtered_wf = filter()
-        wf_cards = generate_cards(filtered_wf)
-        return ui.layout_cards(wf_cards)
-
-
+        cards = du.generate_cards(filtered_wf)
+        return ui.layout_column_wrap(*cards, width=1 / 3)
 
 ### ---------------------------- ###
 
