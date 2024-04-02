@@ -4,6 +4,7 @@ import pandas as pd
 from typing import Iterable, List, Union, Optional
 from shiny import ui
 from input_data import questions
+from faicons import icon_svg
 
 # Input functions
 
@@ -84,3 +85,26 @@ def filter_goal(answer: str, workflows: pd.DataFrame) -> pd.DataFrame:
         return workflows[(workflows["goal"] == "auto")]
     else:
         return workflows[(workflows["goal"] == "pipeline")]
+
+# Workflow cards generator
+
+def generate_cards(filtered_wf: pd.DataFrame) -> List[ui.card]:
+    """Generate cards for each workflow in the filtered data frame"""
+    cards = []
+    for i, row in filtered_wf.iterrows():
+        cards.append(
+            ui.card(
+                ui.card_header(
+                    ui.tags.img(src=row["icon"], class_="center"),
+                    ),
+                ui.p("Name: ", row["name"], class_="text"),
+                ui.p(icon_svg("code"), row["format"], class_="text"),
+                # TODO: consider if footer can be used for more details
+                # ui.card_footer(
+                #     ui.tags.a(
+                #         "More details",
+                # ),
+                # )
+            )
+        )
+    return cards
