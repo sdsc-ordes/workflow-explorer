@@ -28,4 +28,13 @@ a:active {
 .text {
     font: normal normal 13px/1.2 "arial";
     letter-spacing: 0px;
+    line-height: "20px";
+}
+
+.cardpane { 
+    display: block;
+    float: right;
+    width: 33%;
+    margin-left: 10px;
+    text-align: center;
 }

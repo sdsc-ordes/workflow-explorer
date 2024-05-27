@@ -96,15 +96,34 @@ def generate_cards(filtered_wf: pd.DataFrame) -> List[ui.card]:
             ui.card(
                 ui.card_header(
                     ui.tags.img(src=row["icon"], class_="center"),
+                ),
+                ui.p(
+                    ui.span("Name: ", 
+                             row["name"],
                     ),
-                ui.p("Name: ", row["name"], class_="text"),
+                    ui.span("Docs: ",
+                        ui.tags.a(
+                                icon_svg("book"),
+                                href=row["docs"],
+                                target="_blank",
+                        ),
+                        class_="cardpane",
+                    ),
+                    ui.span("Website: ",
+                        ui.tags.a(
+                                icon_svg("globe"),
+                                href=row["website"],
+                                target="_blank",
+                        ),
+                        class_="cardpane",
+                    ),
+                    class_="text",
+                ),
+
                 ui.p(icon_svg("code"), row["format"], class_="text"),
+                
                 # TODO: consider if footer can be used for more details
-                # ui.card_footer(
-                #     ui.tags.a(
-                #         "More details",
-                # ),
-                # )
-            )
-        )
+                # ui.card_footer
+            ),
+        ),
     return cards
