@@ -1,4 +1,4 @@
-from shiny import App, ui, render, reactive
+from shiny import App, ui, render, reactive, experimental
 from faicons import icon_svg
 import pandas as pd
 import data_utils as du
@@ -9,33 +9,61 @@ from input_data import default_checkbox, default_select, questions
 ### ----- Front end: User interface ----- ###
 
 app_ui = ui.page_fluid(
-    # TODO: select theme? shinyswatch.theme.sketchy(),
-    shinyswatch.theme_picker_ui(),
+    # Page theme,
+    shinyswatch.theme.sandstone(),
     ui.panel_title("Workflow Explorer"),
-    ui.layout_sidebar(
+    ui.layout_sidebar( 
         # Question panel
-        ui.panel_sidebar(
-            [
-                du.input_question(id, q.get("label"), q.get("choices"), q.get("type"))
-                for id, q in questions.items()
-            ],
+        ui.sidebar(
+            # Different tabs for basic and advanced questions
+            ui.navset_tab(
+                ui.nav_panel(
+                    "Basic",
+                    ui.card(
+                        experimental.ui.card_body(
+                            [
+                                du.input_question(id, q.get("label"), q.get("choices"), q.get("type"))
+                                for id, q in questions.items() if q.get("group") == "basic"
+                            ],
+                            gap="25px",
+                        ),
+                    ),
+                ),
+                ui.nav_panel(
+                    "Advanced",
+                    ui.card(
+
+                        experimental.ui.card_body(
+                        [
+                            du.input_question(id, q.get("label"), q.get("choices"), q.get("type"))
+                            for id, q in questions.items() if q.get("group") == "advanced"
+                        ],
+                            gap="25px",
+                        ),
+                    ),
+                ),
+            ),
+            # Reset button
             ui.input_action_button(
-                "reset",
-                "Clear choices",
-                width="30%",
-            ),
-        ),
-        # Answer table
-        ui.panel_main(
-            ui.output_ui("workflow_cards")
-            ),
+                            "reset",
+                            "Clear choices",
+                            width="40%",
+                    ),
+
+            # Sidebar settings
+            open="always",
+            width=400,
     ),
+    # Answer table
+    ui.output_ui("workflow_cards"),
     # Styling
     ui.include_css(Path(__file__).parent / "static/styles/main.css"),
+    ),
+    # Link to repo top right
     ui.panel_absolute(
         ui.div(
             ui.tags.a(
-                icon_svg("github", width="45px", height="48px"),
+                icon_svg("github", width="25px", height="26px"),
                 href="https://github.com/sdsc-ordes/workflow-explorer",
                 target="_blank",
             ),
